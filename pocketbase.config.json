@@ -1,0 +1,155 @@
+[
+    {
+        "id": "systemprofiles0",
+        "name": "profiles",
+        "type": "",
+        "system": true,
+        "schema": [
+            {
+                "id": "pbfielduser",
+                "name": "userId",
+                "type": "user",
+                "system": true,
+                "required": true,
+                "unique": true,
+                "options": {
+                    "maxSelect": 1,
+                    "cascadeDelete": true
+                }
+            },
+            {
+                "id": "pbfieldname",
+                "name": "name",
+                "type": "text",
+                "system": false,
+                "required": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "id": "pbfieldavatar",
+                "name": "avatar",
+                "type": "file",
+                "system": false,
+                "required": false,
+                "unique": false,
+                "options": {
+                    "maxSelect": 1,
+                    "maxSize": 5242880,
+                    "mimeTypes": [
+                        "image/jpg",
+                        "image/jpeg",
+                        "image/png",
+                        "image/svg+xml",
+                        "image/gif"
+                    ],
+                    "thumbs": null
+                }
+            }
+        ],
+        "listRule": "userId = @request.user.id",
+        "viewRule": "userId = @request.user.id",
+        "createRule": "userId = @request.user.id",
+        "updateRule": "userId = @request.user.id",
+        "deleteRule": null,
+        "options": {}
+    },
+    {
+        "id": "r8qjdkkmz7stsq8",
+        "name": "polls",
+        "type": "",
+        "system": false,
+        "schema": [
+            {
+                "id": "ubhwx4hg",
+                "name": "question",
+                "type": "text",
+                "system": false,
+                "required": true,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "id": "jczjtmlt",
+                "name": "answers",
+                "type": "json",
+                "system": false,
+                "required": true,
+                "unique": false,
+                "options": {}
+            },
+            {
+                "id": "0yiu6vqy",
+                "name": "posted",
+                "type": "date",
+                "system": false,
+                "required": false,
+                "unique": false,
+                "options": {
+                    "min": "",
+                    "max": ""
+                }
+            },
+            {
+                "id": "jqunc1jv",
+                "name": "ending",
+                "type": "date",
+                "system": false,
+                "required": false,
+                "unique": false,
+                "options": {
+                    "min": "",
+                    "max": ""
+                }
+            },
+            {
+                "id": "zsulmoh4",
+                "name": "ip_addr",
+                "type": "text",
+                "system": false,
+                "required": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "id": "btjiccuj",
+                "name": "votes",
+                "type": "json",
+                "system": false,
+                "required": false,
+                "unique": false,
+                "options": {}
+            },
+            {
+                "id": "8jtkngwy",
+                "name": "total_votes",
+                "type": "number",
+                "system": false,
+                "required": false,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null
+                }
+            }
+        ],
+        "listRule": null,
+        "viewRule": "",
+        "createRule": null,
+        "updateRule": null,
+        "deleteRule": null,
+        "options": {}
+    }
+]
