@@ -3,14 +3,14 @@ import type { PageLoad } from './$types';
 import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
 
 import PocketBase from "pocketbase";
-const client = new PocketBase(PUBLIC_POCKETBASE_URL);
+const pb = new PocketBase(PUBLIC_POCKETBASE_URL);
 
 export const load: PageLoad = async ({params}) => {
     // get poll from PocketBase, SSR and client-side render supported
     
     let record;
     try {
-        record = await client.records.getOne("polls", params.id);
+        record = await pb.collection('polls').getOne(params.id);
     } catch {
         throw error(404);
     };

@@ -4,8 +4,8 @@ import { redirect } from "@sveltejs/kit";
 import { SECRET_POCKETBASE_USERNAME, SECRET_POCKETBASE_PASSWORD } from '$env/static/private';
 import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
 
-const client = new PocketBase(PUBLIC_POCKETBASE_URL);
-const adminAuthData = await client.admins.authViaEmail(SECRET_POCKETBASE_USERNAME, SECRET_POCKETBASE_PASSWORD);
+const pb = new PocketBase(PUBLIC_POCKETBASE_URL);
+const adminAuthData = await pb.admins.authWithPassword(SECRET_POCKETBASE_USERNAME, SECRET_POCKETBASE_PASSWORD);
 
 export const actions: Actions = {
     default: async ({ request }) => {
@@ -22,7 +22,7 @@ export const actions: Actions = {
             votes: new Array(answers.length).fill(0)
         };
 
-        const record = await client.records.create('polls', entry);
+        const record = await pb.collection('polls').create(entry);
 
         throw redirect(302, `/poll/${record.id}`);
     }

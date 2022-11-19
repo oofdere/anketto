@@ -4,8 +4,8 @@ import { SECRET_POCKETBASE_USERNAME, SECRET_POCKETBASE_PASSWORD } from '$env/sta
 import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
 
 import PocketBase from "pocketbase";
-const client = new PocketBase(PUBLIC_POCKETBASE_URL);
-const adminAuthData = await client.admins.authViaEmail(SECRET_POCKETBASE_USERNAME, SECRET_POCKETBASE_PASSWORD);
+const pb = new PocketBase(PUBLIC_POCKETBASE_URL);
+const adminAuthData = await pb.admins.authWithPassword(SECRET_POCKETBASE_USERNAME, SECRET_POCKETBASE_PASSWORD);
 
 
 export const actions: Actions = {
@@ -15,7 +15,7 @@ export const actions: Actions = {
 
         let record;
         try {
-            record = await client.records.getOne("polls", params.id);
+            record = await pb.collection('polls').getOne(params.id);
         } catch {
             throw error(404);
         };
@@ -28,7 +28,7 @@ export const actions: Actions = {
             total_votes: record.total_votes + 1
         }
 
-        const update = await client.records.update('polls', record.id, entry)
+        const update = await pb.collection('polls').update(record.id, entry)
 
         return {
             success: true
