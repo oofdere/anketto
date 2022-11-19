@@ -20,7 +20,8 @@ export const load: PageLoad = async ({params}) => {
             question: record.question,
             answers: record.answers,
             votes: record.votes,
-            total: record.total_votes
+            total: record.total_votes,
+            id: record.id
         }
     };
 }

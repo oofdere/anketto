@@ -17,6 +17,8 @@
     "autoprefixer": "^10.4.7",
     "postcss": "^8.4.14",
     "postcss-load-config": "^4.0.1",
+    "satori": "^0.0.44",
+    "satori-html": "^0.3.0",
     "svelte": "^3.53.1",
     "svelte-check": "^2.7.1",
     "svelte-preprocess": "^4.10.7",
