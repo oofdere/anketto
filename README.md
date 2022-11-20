@@ -1,23 +1,30 @@
-# create-svelte
+# Anketto
+Twitter polls, without Twitter.
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+## Setup
+You should have the latest version of Node and an instance of Pocketbase installed.
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
+First, clone the repository or download the release you'd like to use, then update the dependencies.
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
+# download anketto
+git clone "https://github.com/oofdere/anketto"
+cd anketto
 
 # create a new project in my-app
-npm create svelte@latest my-app
+npm i
 ```
 
-## Developing
+Create a .env file using the following variables:
+```
+PUBLIC_POCKETBASE_URL = "http://127.0.0.1:8090"
+SECRET_POCKETBASE_USERNAME = "pocketbase email"
+SECRET_POCKETBASE_PASSWORD = "pocketbase password"
+```
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Import `pocketbase.config.json` into Pocketbase or manually create the `polls` table. Make sure to set the view rule on the table to public.
 
+### Developing
 ```bash
 npm run dev
 
@@ -25,9 +32,8 @@ npm run dev
 npm run dev -- --open
 ```
 
-## Building
-
-To create a production version of your app:
+### Deployment
+To build for production:
 
 ```bash
 npm run build
