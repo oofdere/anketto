@@ -1,0 +1,7 @@
+api.anketto.xyz {
+    reverse_proxy 127.0.0.1:8090
+}
+
+anketto.xyz {
+    reverse_proxy 127.0.0.1:
+}
