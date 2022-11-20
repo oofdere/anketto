@@ -20,6 +20,8 @@ Create a .env file using the following variables:
 PUBLIC_POCKETBASE_URL = "http://127.0.0.1:8090"
 SECRET_POCKETBASE_USERNAME = "pocketbase email"
 SECRET_POCKETBASE_PASSWORD = "pocketbase password"
+SECRET_HCAPTCHA_KEY = "0x0000000000000000000000000000000000000000"
+PUBLIC_HCAPTCHA_SITE_KEY = "10000000-ffff-ffff-ffff-000000000001"
 ```
 
 Import `pocketbase.config.json` into Pocketbase or manually create the `polls` table. Make sure to set the view rule on the table to public.

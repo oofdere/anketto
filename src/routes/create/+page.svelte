@@ -1,4 +1,7 @@
 <script>
+    import { browser } from '$app/environment';
+    import { PUBLIC_HCAPTCHA_SITE_KEY } from '$env/static/public';
+
     let question = "Is this a question?";
     let answers = ["Yes", "No"];
     let encoded_answers = "";
@@ -59,9 +62,24 @@
                 name="answers"
                 bind:value={answers}
             />
+
+            <div id="hcaptcha" class="h-captcha" data-sitekey="{PUBLIC_HCAPTCHA_SITE_KEY}"></div>
+
             <button type="submit" class="button text-white bg-black w-full">Create!</button>
         </form>
     </div>
 </div>
 
 
+
+<svelte:head>
+    {#if browser}
+    <script>
+        var hcaptchaLoad = function () {
+            console.log('hcaptcha loaded');
+            var widgetID = hcaptcha.render('hcaptcha');
+        }
+    </script>
+    <script src="https://js.hcaptcha.com/1/api.js?render=explicit&onload=hcaptchaLoad" async defer></script>
+    {/if}
+</svelte:head>

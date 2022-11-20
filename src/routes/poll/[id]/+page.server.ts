@@ -7,10 +7,20 @@ import PocketBase from "pocketbase";
 const pb = new PocketBase(PUBLIC_POCKETBASE_URL);
 const adminAuthData = await pb.admins.authWithPassword(SECRET_POCKETBASE_USERNAME, SECRET_POCKETBASE_PASSWORD);
 
+import { validate } from "$lib/private/hcaptcha";
+
 
 export const actions: Actions = {
     vote: async ({request, params}) => {
         const data = await request.formData();
+        
+        const hcaptcha_token = <string>data.get('h-captcha-response');
+        const hcaptcha_valid = await validate(hcaptcha_token);
+        if(!hcaptcha_valid) {
+            console.log("invalid hcaptcha")
+            throw error(403, "Invalid captcha.");
+        };
+        
         const vote = (data.get('vote') as string);
 
         let record;
