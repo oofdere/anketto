@@ -4,7 +4,7 @@
 
     let question = "Is this a question?";
     let answers = ["Yes", "No"];
-    let encoded_answers = "";
+    $: encoded_answers = JSON.stringify(answers);
 
     /**
      * @param {number} index
@@ -20,7 +20,7 @@
         console.log("Adding an answer...");
         answers.push("New answer");
         answers = answers;
-        console.log(answers);
+        console.log(encoded_answers);
     }
 </script>
 
@@ -60,7 +60,7 @@
                 class="hidden"
                 id="form-answers"
                 name="answers"
-                bind:value={answers}
+                bind:value={encoded_answers}
             />
 
             <div id="hcaptcha" class="h-captcha" data-sitekey="{PUBLIC_HCAPTCHA_SITE_KEY}"></div>

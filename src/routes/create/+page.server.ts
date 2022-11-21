@@ -21,7 +21,7 @@ export const actions: Actions = {
         };
 
         const question = data.get('question');
-        const answers = (data.get('answers') as string).split(',');
+        const answers = JSON.parse(data.get('answers') as string);
         console.log(question, answers, data);
 
         const hours = parseInt(<string>data.get('length'));
