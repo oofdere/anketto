@@ -71,7 +71,7 @@
 {/if}
 
 <svelte:head>
-    {#if browser}
+    {#if browser || !show_results}
         <script>
             var hcaptchaLoad = function () {
                 console.log("hcaptcha loaded");
@@ -84,4 +84,5 @@
             defer
         ></script>
     {/if}
+    <title>{poll.question} | Anketto</title>
 </svelte:head>
