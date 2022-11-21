@@ -15,7 +15,7 @@
 </script>
 
 {#if form?.success || show_results}
-    <div class="flex flex-col space-y-1">
+    <div class="flex flex-col space-y-1 container">
         <h1 class="heading">{poll.question}</h1>
         <ul class="flex flex-col  space-y-1">
             {#each poll.answers as answer, index}
@@ -28,8 +28,8 @@
                     <div
                         class="bg-black bg-opacity-10 p-2 rounded-md text-lg flex"
                     >
-                        <span class="flex-grow">{answer}</span>
-                        <span class="place-self-end">
+                        <span class="block break-words">{answer}</span>
+                        <span class="min-w-fit place-self-end">
                             {((poll.votes[index] / poll.total) * 100).toFixed(
                                 2
                             )}%
@@ -47,7 +47,7 @@
             <ul class="flex flex-col  space-y-1">
                 {#each poll.answers as answer, index}
                     <li class="bg-gray-100 p-2 rounded-md text-lg flex-grow">
-                        <label class="block w-full h-full" for="form-radio-{index.toString()}">
+                        <label class="block w-full h-full break-words" for="form-radio-{index.toString()}">
                             <input id="form-radio-{index.toString()}" type="radio" name="vote" value={index} />
                             {answer}
                         </label>

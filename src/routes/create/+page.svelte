@@ -24,7 +24,7 @@
     }
 </script>
 
-<div class="flex flex-col space-y-4">
+<div class="flex flex-col space-y-4 container">
     <div class="flex flex-col space-y-1">
         <span class="supra">POSIT A RIVETING QUESTION</span>
         <input
@@ -67,7 +67,7 @@
 
             <div class="flex rounded-md">
                 <button type="submit" class="button rounded-l-md rounded-r-none text-white bg-black w-full">Create!</button>
-                <select class="form-input rounded-r-md" name="length">
+                <select class="form-input rounded-r-md w-36" name="length">
                     <option value="1">1 hour</option>
                     <option value="12">12 hours</option>
                     <option value="24">1 day</option>
