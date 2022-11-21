@@ -65,7 +65,21 @@
 
             <div id="hcaptcha" class="h-captcha" data-sitekey="{PUBLIC_HCAPTCHA_SITE_KEY}"></div>
 
-            <button type="submit" class="button text-white bg-black w-full">Create!</button>
+            <div class="flex rounded-md">
+                <button type="submit" class="button rounded-l-md rounded-r-none text-white bg-black w-full">Create!</button>
+                <select class="form-input rounded-r-md" name="length">
+                    <option value="1">1 hour</option>
+                    <option value="12">12 hours</option>
+                    <option value="24">1 day</option>
+                    <option value="72">3 days</option>
+                    <option value="120">5 days</option>
+                    <option value="168">7 days</option>
+                    <option value="336">14 days</option>
+                    <option value="720">30 days</option>
+                </select>
+            </div>
+
+            
         </form>
     </div>
 </div>

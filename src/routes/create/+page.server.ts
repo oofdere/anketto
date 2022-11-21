@@ -4,6 +4,7 @@ import { error, redirect } from "@sveltejs/kit";
 import { SECRET_POCKETBASE_USERNAME, SECRET_POCKETBASE_PASSWORD } from '$env/static/private';
 import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
 import { validate } from "$lib/private/hcaptcha";
+import { addHours } from "date-fns";
 
 const pb = new PocketBase(PUBLIC_POCKETBASE_URL);
 const adminAuthData = await pb.admins.authWithPassword(SECRET_POCKETBASE_USERNAME, SECRET_POCKETBASE_PASSWORD);
@@ -21,13 +22,19 @@ export const actions: Actions = {
 
         const question = data.get('question');
         const answers = (data.get('answers') as string).split(',');
-
         console.log(question, answers, data);
+
+        const hours = parseInt(<string>data.get('length'));
+        const current_date = new Date();
+        const end_date = addHours(current_date, hours)
+        console.log(current_date, end_date);
 
         const entry = {
             question: question,
             answers: answers,
-            votes: new Array(answers.length).fill(0)
+            votes: new Array(answers.length).fill(0),
+            posted: current_date,
+            ending: end_date
         };
 
         const record = await pb.collection('polls').create(entry);

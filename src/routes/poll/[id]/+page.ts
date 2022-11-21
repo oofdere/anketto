@@ -7,6 +7,8 @@ import { writable } from "svelte/store";
 import PocketBase from "pocketbase";
 const pb = new PocketBase(PUBLIC_POCKETBASE_URL);
 
+import { isFuture, isPast, parseISO } from "date-fns";
+
 export const load: PageLoad = async ({params}) => {
     // get poll from PocketBase, SSR and client-side render supported
     let record;
@@ -25,7 +27,16 @@ export const load: PageLoad = async ({params}) => {
 
     const realtime = writable(poll);
 
-    if (browser) {
+    const end_date = parseISO(record.ending);
+    console.log(end_date, isPast(end_date));
+
+    let show_results = false;
+    if (isPast(end_date)) {
+        show_results = true;
+        console.log("POLL ENDED!")
+    }
+
+    if (browser && isPast(end_date)) {
         pb.collection('polls').subscribe(params.id, function (e) {
             let poll = {
                 question: e.record.question,
@@ -38,7 +49,8 @@ export const load: PageLoad = async ({params}) => {
     }
 
     return {
-        poll: realtime
+        poll: realtime,
+        show_results: show_results
     };
 }
 

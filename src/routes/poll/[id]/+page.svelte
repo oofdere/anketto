@@ -11,7 +11,7 @@
         poll = value;
     });
 
-    let show_results = false;
+    let show_results = data.show_results;
 </script>
 
 {#if form?.success || show_results}
