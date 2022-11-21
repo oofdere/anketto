@@ -47,8 +47,10 @@
             <ul class="flex flex-col  space-y-1">
                 {#each poll.answers as answer, index}
                     <li class="bg-gray-100 p-2 rounded-md text-lg flex-grow">
-                        <input type="radio" name="vote" value={index} />
-                        <label for={index.toString()}>{answer}</label>
+                        <label class="block w-full h-full" for="form-radio-{index.toString()}">
+                            <input id="form-radio-{index.toString()}" type="radio" name="vote" value={index} />
+                            {answer}
+                        </label>
                     </li>
                 {/each}
             </ul>
