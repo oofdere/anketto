@@ -1,14 +1,7 @@
 import { error } from '@sveltejs/kit';
 import type { Actions } from './$types';
-import { SECRET_POCKETBASE_USERNAME, SECRET_POCKETBASE_PASSWORD } from '$env/static/private';
-import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
-
-import PocketBase from "pocketbase";
-const pb = new PocketBase(PUBLIC_POCKETBASE_URL);
-const adminAuthData = await pb.admins.authWithPassword(SECRET_POCKETBASE_USERNAME, SECRET_POCKETBASE_PASSWORD);
-
+import { pb } from '$lib/private/pocketbase';
 import { validate } from "$lib/private/hcaptcha";
-
 
 export const actions: Actions = {
     vote: async ({request, params}) => {

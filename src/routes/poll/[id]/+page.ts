@@ -1,13 +1,10 @@
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
-import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
 import { browser } from "$app/environment";
 import { writable } from "svelte/store";
+import { pb } from '$lib/public/pocketbase';
 
-import PocketBase from "pocketbase";
-const pb = new PocketBase(PUBLIC_POCKETBASE_URL);
-
-import { isFuture, isPast, parseISO } from "date-fns";
+import { isPast, parseISO } from "date-fns";
 
 export const load: PageLoad = async ({params}) => {
     // get poll from PocketBase, SSR and client-side render supported

@@ -1,13 +1,11 @@
 import type { Actions } from "./$types";
 import PocketBase from "pocketbase";
 import { error, redirect } from "@sveltejs/kit";
-import { SECRET_POCKETBASE_USERNAME, SECRET_POCKETBASE_PASSWORD } from '$env/static/private';
-import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
 import { validate } from "$lib/private/hcaptcha";
 import { addHours } from "date-fns";
+import { pb } from "$lib/private/pocketbase";
 
-const pb = new PocketBase(PUBLIC_POCKETBASE_URL);
-const adminAuthData = await pb.admins.authWithPassword(SECRET_POCKETBASE_USERNAME, SECRET_POCKETBASE_PASSWORD);
+
 
 export const actions: Actions = {
     default: async ({ request }) => {
