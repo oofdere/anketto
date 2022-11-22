@@ -25,7 +25,7 @@
                 <div class="bg-black bg-opacity-10 p-2 rounded-md text-lg flex space-x-1">
                     <span class="grow block break-words">{answer}</span>
                     <span class="min-w-fit place-self-end">
-                        {((poll.votes[index] / poll.total) * 100).toFixed(2)}%
+                        {(poll.total && ((poll.votes[index] / poll.total) * 100).toLocaleString(undefined, {maximumFractionDigits: 2})) || 0}%
                     </span>
                 </div>
             </li>
