@@ -1,4 +1,4 @@
-import { error } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 import { pb } from '$lib/private/pocketbase';
 import { validate } from "$lib/private/hcaptcha";
@@ -33,8 +33,6 @@ export const actions: Actions = {
 
         const update = await pb.collection('polls').update(record.id, entry)
 
-        return {
-            success: true
-        }
+        throw redirect(302, `/poll/${record.id}`);
     }
 }
