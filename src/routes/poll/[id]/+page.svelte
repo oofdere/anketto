@@ -22,8 +22,8 @@
                     style="width: {(poll.votes[index] / poll.total) * 100}%"
                     aria-hidden="true"
                 />
-                <div class="bg-black bg-opacity-10 p-2 rounded-md text-lg flex">
-                    <span class="block break-words">{answer}</span>
+                <div class="bg-black bg-opacity-10 p-2 rounded-md text-lg flex space-x-1">
+                    <span class="grow block break-words">{answer}</span>
                     <span class="min-w-fit place-self-end">
                         {((poll.votes[index] / poll.total) * 100).toFixed(2)}%
                     </span>
