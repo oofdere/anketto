@@ -1,5 +1,4 @@
 import type { Actions } from "./$types";
-import PocketBase from "pocketbase";
 import { error, redirect } from "@sveltejs/kit";
 import { validate } from "$lib/private/hcaptcha";
 import { addHours } from "date-fns";
