@@ -4,7 +4,7 @@ import { browser } from "$app/environment";
 import { writable } from "svelte/store";
 import { pb } from '$lib/public/pocketbase';
 
-import { isPast, parseISO } from "date-fns";
+import { isPast, isFuture, parseISO } from "date-fns";
 
 export const load: PageLoad = async ({params}) => {
     // get poll from PocketBase, SSR and client-side render supported
@@ -34,7 +34,7 @@ export const load: PageLoad = async ({params}) => {
         console.log("POLL ENDED!")
     }
 
-    if (browser && isPast(end_date)) {
+    if (browser && isFuture(end_date)) {
         pb.collection('polls').subscribe(params.id, function (e) {
             let poll = {
                 question: e.record.question,
