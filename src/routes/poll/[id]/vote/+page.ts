@@ -1,7 +1,6 @@
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
 import { browser } from "$app/environment";
-import { writable } from "svelte/store";
 import { pb } from '$lib/public/pocketbase';
 
 import { isPast, parseISO } from "date-fns";
@@ -23,32 +22,19 @@ export const load: PageLoad = async ({params}) => {
         id: record.id
     }
 
-    const realtime = writable(poll);
-
     const end_date = parseISO(record.ending);
     console.log(end_date, isPast(end_date));
 
     let show_results = false;
     if (isPast(end_date)) {
+        // if poll has ended redirect user to results
         show_results = true;
-        console.log("POLL ENDED!")
-    }
-
-    if (browser && isPast(end_date)) {
-        pb.collection('polls').subscribe(params.id, function (e) {
-            let poll = {
-                question: e.record.question,
-                answers: e.record.answers,
-                votes: e.record.votes,
-                total: e.record.total_votes
-            };
-            realtime.set(poll);
-        });
+        //throw redirect(302, `/poll/${record.id}`);
     }
 
     return {
-        poll: realtime,
-        show_results: show_results
+        poll: poll,
+        show_results: show_results,
     };
 }
 
