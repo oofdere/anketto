@@ -1,10 +1,11 @@
-import { error } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
 import { browser } from "$app/environment";
 import { readable, writable } from "svelte/store";
 import { pb } from '$lib/public/pocketbase';
 
 import { isPast, isFuture, parseISO, formatDistanceToNowStrict } from "date-fns";
+import { goto } from '$app/navigation';
 
 export const load: PageLoad = async ({params}) => {
     // get poll from PocketBase, SSR and client-side render supported
@@ -63,17 +64,11 @@ export const load: PageLoad = async ({params}) => {
         let return_value: any = () => clearInterval(interval)
         return return_value;
     })
-    
-    let show_results = false;
-    if (isPast(end_date)) {
-        show_results = true;
-        console.log("POLL ENDED!")
-    }
 
     return {
         poll: realtime,
         time: pretty_time,
-        show_results: show_results
+        active: isFuture(end_date)
     };
 }
 

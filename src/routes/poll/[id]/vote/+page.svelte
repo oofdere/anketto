@@ -7,8 +7,6 @@
     export let form: ActionData;
 
     const poll = data.poll;
-
-    let show_results = data.show_results;
 </script>
 
     <div class="flex flex-col space-y-1">

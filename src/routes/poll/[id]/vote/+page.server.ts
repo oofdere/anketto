@@ -2,6 +2,7 @@ import { error, redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 import { pb } from '$lib/private/pocketbase';
 import { validate } from "$lib/private/hcaptcha";
+import { isPast, parseISO } from 'date-fns';
 
 export const actions: Actions = {
     vote: async ({request, params}) => {
@@ -22,6 +23,11 @@ export const actions: Actions = {
         } catch {
             throw error(404);
         };
+
+        console.log(isPast(parseISO(record.ending)))
+        if (isPast(parseISO(record.ending))) {
+            throw error(403, "You cannot vote after the voting period has ended.")
+        }
 
         let votes = record.votes;
         votes[vote] += 1;

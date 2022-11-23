@@ -9,12 +9,12 @@
     });
 
     const time = data.time
-
-    let show_results = data.show_results;
 </script>
 
 <div class="flex flex-col space-y-1 container">
-    <a href="/poll/{poll.id}/vote" class="supra underline">BACK TO VOTING</a>
+    {#if $time != "VOTING ENDED"}
+        <a href="/poll/{poll.id}/vote" class="supra underline">BACK TO VOTING</a>
+    {/if}
     <h1 class="heading">{poll.question}</h1>
     <ul class="flex flex-col  space-y-1">
         {#each poll.answers as answer, index}
