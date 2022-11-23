@@ -8,6 +8,8 @@
         poll = value;
     });
 
+    const time = data.time
+
     let show_results = data.show_results;
 </script>
 
@@ -30,8 +32,13 @@
                 </div>
             </li>
         {/each}
-        <p class="supra">{poll.total} VOTES</p>
     </ul>
+    <div class="supra flex space-x-1">
+        <span class="grow">{$time}</span>
+        <span class="min-w-fit place-self-end">
+            {poll.total} VOTES
+        </span>
+    </div>
 </div>
 
 <svelte:head>
