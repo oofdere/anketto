@@ -1,7 +1,7 @@
 import type { Actions } from "./$types";
 import { error, redirect } from "@sveltejs/kit";
 import { validate } from "$lib/private/hcaptcha";
-import { addHours } from "date-fns";
+import { addHours, addMinutes } from "date-fns";
 import { pb } from "$lib/private/pocketbase";
 
 
@@ -23,7 +23,7 @@ export const actions: Actions = {
 
         const hours = parseInt(<string>data.get('length'));
         const current_date = new Date();
-        const end_date = addHours(current_date, hours)
+        const end_date = addMinutes(current_date, hours);
         console.log(current_date, end_date);
 
         const entry = {

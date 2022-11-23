@@ -68,14 +68,19 @@
             <div class="flex rounded-md">
                 <button type="submit" class="button rounded-l-md rounded-r-none text-white bg-black w-full">Create!</button>
                 <select class="form-input rounded-r-md w-36" name="length">
-                    <option value="1">1 hour</option>
-                    <option value="12">12 hours</option>
-                    <option value="24">1 day</option>
-                    <option value="72">3 days</option>
-                    <option value="120">5 days</option>
-                    <option value="168">7 days</option>
-                    <option value="336">14 days</option>
-                    <option value="720">30 days</option>
+                    <option value="1">1 minute</option>
+                    <option value="5">5 minutes</option>
+                    <option value="10">10 minutes</option>
+                    <option value="15">15 minutes</option>
+                    <option value="30">30 minutes</option>
+                    <option value="60">1 hour</option>
+                    <option value="{12*60}">12 hours</option>
+                    <option value="{24*60}">1 day</option>
+                    <option value="{72*60}">3 days</option>
+                    <option value="{120*60}">5 days</option>
+                    <option value="{168*60}">7 days</option>
+                    <option value="{336*60}">14 days</option>
+                    <option value="{720*60}">30 days</option>
                 </select>
             </div>
 
