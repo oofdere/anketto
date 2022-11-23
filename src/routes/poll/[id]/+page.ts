@@ -5,7 +5,6 @@ import { readable, writable } from "svelte/store";
 import { pb } from '$lib/public/pocketbase';
 
 import { isPast, isFuture, parseISO, formatDistanceToNowStrict } from "date-fns";
-import { goto } from '$app/navigation';
 
 export const load: PageLoad = async ({params}) => {
     // get poll from PocketBase, SSR and client-side render supported
@@ -42,7 +41,14 @@ export const load: PageLoad = async ({params}) => {
         });
     }
 
-    const pretty_time = readable("", set => {
+    let init_text: string;
+    if (isPast(end_date)) {
+        init_text = "VOTING ENDED";
+    }
+    else {
+        init_text = formatDistanceToNowStrict(end_date) + " REMAINING";
+    }
+    const pretty_time = readable(init_text, set => {
         let poll_ended = isPast(end_date);
         
 
@@ -58,7 +64,6 @@ export const load: PageLoad = async ({params}) => {
             }
         }
 
-        
         const interval = setInterval(update, 500);
         
         let return_value: any = () => clearInterval(interval)
@@ -67,8 +72,7 @@ export const load: PageLoad = async ({params}) => {
 
     return {
         poll: realtime,
-        time: pretty_time,
-        active: isFuture(end_date)
+        time: pretty_time
     };
 }
 
