@@ -39,6 +39,6 @@ export const actions: Actions = {
 
         const update = await pb.collection('polls').update(record.id, entry)
 
-        throw redirect(302, `/poll/${record.id}`);
+        throw redirect(302, `/poll/${record.id}?selected=${vote}`);
     }
 }

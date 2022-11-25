@@ -35,6 +35,13 @@ export const load: PageLoad = async ({params}) => {
         }
     }
 
+    if (browser) {
+        const currentValue = localStorage.getItem(poll.id);
+        if (currentValue != null) {
+            goto(`/poll/${poll.id}`);
+        }
+    }
+
     return {
         poll: poll,
     };
