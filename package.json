@@ -30,6 +30,6 @@
   "dependencies": {
     "@sveltejs/adapter-node": "^1.0.0-next.101",
     "pocketbase": "^0.8.0",
-    "svelte-frappe-charts": "^1.9.2"
+    "svelte-frappe-charts": "^1.10.0"
   }
 }
