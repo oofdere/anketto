@@ -1,6 +1,7 @@
 <script>
     import { browser } from '$app/environment';
     import { PUBLIC_HCAPTCHA_SITE_KEY } from '$env/static/public';
+    import JsRequired from '$lib/components/JsRequired.svelte';
 
     let question = "Is this a question?";
     let answers = ["Yes", "No"];
@@ -25,6 +26,7 @@
 </script>
 
 <div class="flex flex-col space-y-4 container">
+    <JsRequired action="create new polls" />
     <div class="flex flex-col space-y-1">
         <span class="supra">POSIT A RIVETING QUESTION</span>
         <input
