@@ -3,6 +3,7 @@
     import createLocalStore from "$lib/public/localstorage";
     import { browser } from "$app/environment";
     import { page } from "$app/stores";
+    import { onDestroy } from "svelte";
 
     export let data: PageData;
 
@@ -28,6 +29,13 @@
         if (selected) {
             pollStorage.set(<string>$page.url.searchParams.get('selected'));
         }
+
+        // unsubscribe when navigating away
+        onDestroy(() => {
+        stores.forEach(store => {
+            store();
+        })
+    })
     }
 
     const time = data.time;
