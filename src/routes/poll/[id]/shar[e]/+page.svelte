@@ -1,9 +1,6 @@
 <script lang="ts">
     import type { PageData } from "../$types";
-    import createLocalStore from "$lib/public/localstorage";
     import { browser } from "$app/environment";
-    import { page } from "$app/stores";
-    import { goto } from "$app/navigation";
     import { generateCohostEmbed } from "./(cohost)/cohost";
 
     export let data: PageData;

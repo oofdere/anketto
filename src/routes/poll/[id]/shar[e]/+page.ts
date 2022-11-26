@@ -1,11 +1,6 @@
-import { error, redirect } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import type { PageLoad } from '../$types';
-import { browser } from "$app/environment";
-import { readable, writable, type Writable } from "svelte/store";
 import { pb } from '$lib/public/pocketbase';
-
-import { isPast, isFuture, parseISO, formatDistanceToNowStrict } from "date-fns";
-import createLocalStore from '$lib/public/localstorage';
 import qrcodegen, { toSvgString } from "$lib/public/qrcode";
 
 export const load: PageLoad = async ({params}) => {

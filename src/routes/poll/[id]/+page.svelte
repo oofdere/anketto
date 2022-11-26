@@ -34,7 +34,6 @@
 </script>
 
 <div class="flex flex-col space-y-1 container">
-    {@html data.qrsvg}
     {#if pollState === null && $time != "VOTING ENDED"}
         <a href="/poll/{poll.id}/vote" class="supra underline">BACK TO VOTING</a
         >
