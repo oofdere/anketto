@@ -3,11 +3,14 @@
     import { PUBLIC_HCAPTCHA_SITE_KEY } from "$env/static/public";
     import JsRequired from "$lib/components/JsRequired.svelte";
     import type { PageData, ActionData } from "./$types";
+    import { page } from "$app/stores";
 
     export let data: PageData;
     export let form: ActionData;
 
     const poll = data.poll;
+
+    const selected = <string>$page.url.searchParams.get('selected');
 </script>
 
 <div class="flex flex-col space-y-1">
@@ -26,6 +29,7 @@
                             type="radio"
                             name="vote"
                             value={index}
+                            checked={selected === index.toString()}
                         />
                         {answer}
                     </label>
