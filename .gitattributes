@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# ignore qr code lib
+src/lib/public/qrcode.ts linguist-vendored

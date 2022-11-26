@@ -6,6 +6,7 @@ import { pb } from '$lib/public/pocketbase';
 
 import { isPast, isFuture, parseISO, formatDistanceToNowStrict } from "date-fns";
 import createLocalStore from '$lib/public/localstorage';
+import qrcodegen, { toSvgString } from "$lib/public/qrcode";
 
 export const load: PageLoad = async ({params}) => {
     // get poll from PocketBase, SSR and client-side render supported
@@ -51,7 +52,6 @@ export const load: PageLoad = async ({params}) => {
     }
     const pretty_time = readable(init_text, set => {
         let poll_ended = isPast(end_date);
-        
 
         function update() {
             set(
@@ -71,9 +71,13 @@ export const load: PageLoad = async ({params}) => {
         return return_value;
     })
 
+    const qrcode = qrcodegen.QrCode.encodeText(`https://anketto.xyz/poll/${poll.id}/vote`, qrcodegen.QrCode.Ecc.MEDIUM);
+    const qrsvg = toSvgString(qrcode, 4, "white", "black");
+
     return {
         poll: realtime,
-        time: pretty_time
+        time: pretty_time,
+        qrsvg
     };
 }
 
