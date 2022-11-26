@@ -75,6 +75,7 @@
             {poll.total} VOTES
         </span>
     </div>
+    <a class="button ~neutral" href="/poll/{poll.id}/share">Share</a>
 </div>
 
 <svelte:head>
