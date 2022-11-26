@@ -34,6 +34,7 @@
             id="form-question"
             form="form-meta"
             name="question"
+            aria-label="Question"
             bind:value={question}
         />
     </div>
@@ -44,6 +45,7 @@
                 <input
                     bind:value={answer}
                     class="bg-gray-100 p-2 rounded-md text-lg flex-grow"
+                    aria-label="Option {index+1}"
                 />
                 <button
                     class="button text-white bg-red-500 text-lg"
