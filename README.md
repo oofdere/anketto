@@ -1,5 +1,6 @@
 # Anketto
-Twitter polls, without Twitter.
+Video Demo: https://www.youtube.com/watch?v=gRyjL4OWrOk
+Description: Twitter polls, without Twitter.
 
 ## Setup
 You should have the latest version of Node and an instance of Pocketbase installed.
