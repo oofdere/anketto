@@ -29,6 +29,6 @@
   "type": "module",
   "dependencies": {
     "@sveltejs/adapter-node": "^1.0.0-next.101",
-    "pocketbase": "^0.8.1"
+    "pocketbase": "^0.9.0"
   }
 }
